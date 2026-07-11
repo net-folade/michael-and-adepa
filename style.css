@@ -302,20 +302,6 @@ section { margin-top: 4rem; }
 .swatch-green { background: var(--green); }
 .swatch-cream { background: var(--cream); }
 
-.map-embed {
-  margin-top: 1rem;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 3px 12px rgba(30, 77, 59, 0.12);
-}
-
-.map-embed iframe {
-  display: block;
-  width: 100%;
-  height: 300px;
-  border: 0;
-}
-
 /* ---------- Gallery ---------- */
 .gallery {
   display: flex;
@@ -327,8 +313,10 @@ section { margin-top: 4rem; }
 }
 
 .gallery img {
-  flex: 0 0 min(78%, 420px);
-  aspect-ratio: 4 / 5;
+  flex: 0 0 min(52%, 240px);
+  min-width: 0;
+  width: min(52%, 240px);
+  aspect-ratio: 3 / 4;
   object-fit: cover;
   border-radius: 12px;
   scroll-snap-align: center;
