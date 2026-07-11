@@ -264,8 +264,10 @@ section { margin-top: 4rem; }
 /* ---------- Details ---------- */
 .details-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1rem;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
 .detail-card {
@@ -313,9 +315,9 @@ section { margin-top: 4rem; }
 }
 
 .gallery img {
-  flex: 0 0 min(52%, 240px);
+  flex: 0 0 min(62%, 288px);
   min-width: 0;
-  width: min(52%, 240px);
+  width: min(62%, 288px);
   aspect-ratio: 3 / 4;
   object-fit: cover;
   border-radius: 12px;
