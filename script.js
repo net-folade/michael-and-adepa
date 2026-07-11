@@ -86,8 +86,17 @@ function makeParticle(kind) {
 
 function burstConfetti() {
   if (REDUCED_MOTION) return;
-  for (let i = 0; i < 80; i++) particles.push(makeParticle("confetti"));
+  for (let i = 0; i < 160; i++) particles.push(makeParticle("confetti"));
   if (!animating) tick();
+  // second and third waves for a fuller celebration
+  setTimeout(() => {
+    for (let i = 0; i < 90; i++) particles.push(makeParticle("confetti"));
+    if (!animating) tick();
+  }, 350);
+  setTimeout(() => {
+    for (let i = 0; i < 60; i++) particles.push(makeParticle("confetti"));
+    if (!animating) tick();
+  }, 700);
 }
 
 let petalsOn = false;
@@ -134,6 +143,30 @@ function tick() {
     animating = false;
     ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
   }
+}
+
+// ---------- Fade-up reveal on scroll ----------
+if (!REDUCED_MOTION) {
+  const fadeEls = document.querySelectorAll(".hero > *, section > *, .footer > *");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      }
+    },
+    { threshold: 0.15 }
+  );
+  fadeEls.forEach((el, i) => {
+    el.classList.add("fade-up");
+    // gentle stagger for the hero lines revealed together on envelope open
+    if (el.parentElement.classList.contains("hero")) {
+      el.style.transitionDelay = `${i * 0.12}s`;
+    }
+    observer.observe(el);
+  });
 }
 
 // ---------- RSVP form (Formspree via fetch) ----------

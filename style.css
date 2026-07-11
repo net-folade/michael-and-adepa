@@ -388,6 +388,18 @@ section { margin-top: 4rem; }
   color: var(--green);
 }
 
+/* ---------- Fade-up reveal ---------- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   .envelope { animation: none; }
