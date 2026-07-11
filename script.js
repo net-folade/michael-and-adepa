@@ -1,5 +1,5 @@
 // ---------- Config ----------
-const WEDDING_DATE = new Date("2026-08-15T09:00:00");
+const WEDDING_DATE = new Date("2026-08-15T14:00:00");
 const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // ---------- Envelope opening ----------

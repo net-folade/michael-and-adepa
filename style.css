@@ -22,6 +22,17 @@ body {
   overflow-x: hidden;
 }
 
+/* fixed background photo with cream wash so text stays readable */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(rgba(250, 246, 238, 0.86), rgba(250, 246, 238, 0.86)),
+    url("photos/bg-web.jpg") center / cover no-repeat;
+}
+
 /* ---------- Envelope intro ---------- */
 .envelope-screen {
   position: fixed;
@@ -291,6 +302,20 @@ section { margin-top: 4rem; }
 .swatch-green { background: var(--green); }
 .swatch-cream { background: var(--cream); }
 
+.map-embed {
+  margin-top: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(30, 77, 59, 0.12);
+}
+
+.map-embed iframe {
+  display: block;
+  width: 100%;
+  height: 300px;
+  border: 0;
+}
+
 /* ---------- Gallery ---------- */
 .gallery {
   display: flex;
@@ -318,13 +343,25 @@ section { margin-top: 4rem; }
 }
 
 /* ---------- RSVP ---------- */
-.rsvp-deadline { text-align: center; margin-bottom: 1.5rem; color: var(--green-light); }
+.rsvp-deadline { text-align: center; margin-bottom: 0.5rem; color: var(--green-light); }
+
+.rsvp-phones {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.rsvp-phones a {
+  color: var(--green);
+  font-weight: 500;
+  white-space: nowrap;
+}
 
 #rsvpForm {
   background: #fff;
+  border: 1px solid var(--cream-dark);
   border-radius: 14px;
   padding: 2rem 1.5rem;
-  box-shadow: 0 4px 20px rgba(30, 77, 59, 0.1);
+  box-shadow: 0 6px 28px rgba(30, 77, 59, 0.18);
   display: grid;
   gap: 1.25rem;
   max-width: 480px;

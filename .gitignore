@@ -1,0 +1,4 @@
+.DS_Store
+# camera originals — web copies (bg-web.jpg, photo4-web.jpg) are used by the site
+photos/bg.jpg
+photos/photo4.jpg
