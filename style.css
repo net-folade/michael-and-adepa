@@ -273,36 +273,33 @@ section { margin-top: 4rem; }
 .detail-card {
   background: #fff;
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 1.5rem 1rem;
   text-align: center;
   box-shadow: 0 3px 12px rgba(30, 77, 59, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .detail-card h3 {
   font-family: var(--serif);
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   color: var(--gold);
   margin-bottom: 0.5rem;
 }
 
+.detail-card p {
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
 .map-link {
   display: inline-block;
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
   color: var(--green);
   font-weight: 500;
+  white-space: nowrap;
 }
-
-.swatch {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  vertical-align: middle;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-}
-
-.swatch-green { background: var(--green); }
-.swatch-cream { background: var(--cream); }
 
 /* ---------- Gallery ---------- */
 .gallery {
