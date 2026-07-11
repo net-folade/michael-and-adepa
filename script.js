@@ -1,0 +1,168 @@
+// ---------- Config ----------
+const WEDDING_DATE = new Date("2026-12-12T14:00:00");
+const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// ---------- Envelope opening ----------
+const envelope = document.getElementById("envelope");
+const envelopeScreen = document.getElementById("envelopeScreen");
+const invitation = document.getElementById("invitation");
+
+function openEnvelope() {
+  if (envelope.classList.contains("open")) return;
+  envelope.classList.add("open");
+  envelopeScreen.classList.add("opened");
+  invitation.hidden = false;
+  burstConfetti();
+  startPetals();
+}
+
+envelope.addEventListener("click", openEnvelope);
+envelope.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    openEnvelope();
+  }
+});
+
+// ---------- Countdown ----------
+const cd = {
+  days: document.getElementById("cdDays"),
+  hours: document.getElementById("cdHours"),
+  mins: document.getElementById("cdMins"),
+  secs: document.getElementById("cdSecs"),
+};
+const countdownGrid = document.getElementById("countdownGrid");
+const countdownToday = document.getElementById("countdownToday");
+
+function updateCountdown() {
+  const diff = WEDDING_DATE - Date.now();
+  if (diff <= 0) {
+    countdownGrid.hidden = true;
+    countdownToday.hidden = false;
+    clearInterval(countdownTimer);
+    return;
+  }
+  const s = Math.floor(diff / 1000);
+  cd.days.textContent = Math.floor(s / 86400);
+  cd.hours.textContent = String(Math.floor((s % 86400) / 3600)).padStart(2, "0");
+  cd.mins.textContent = String(Math.floor((s % 3600) / 60)).padStart(2, "0");
+  cd.secs.textContent = String(s % 60).padStart(2, "0");
+}
+
+const countdownTimer = setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// ---------- Confetti & petals ----------
+const canvas = document.getElementById("confettiCanvas");
+const ctx = canvas.getContext("2d");
+let particles = [];
+let animating = false;
+
+function sizeCanvas() {
+  canvas.width = window.innerWidth * devicePixelRatio;
+  canvas.height = window.innerHeight * devicePixelRatio;
+  ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+}
+sizeCanvas();
+window.addEventListener("resize", sizeCanvas);
+
+const COLORS = ["#c9a86a", "#1e4d3b", "#e8b4b8", "#faf6ee", "#2e6b52"];
+
+function makeParticle(kind) {
+  const w = window.innerWidth;
+  return {
+    kind, // "confetti" bursts up from bottom; "petal" drifts down from top
+    x: Math.random() * w,
+    y: kind === "confetti" ? window.innerHeight + 10 : -20,
+    vx: (Math.random() - 0.5) * (kind === "confetti" ? 6 : 1),
+    vy: kind === "confetti" ? -(6 + Math.random() * 9) : 0.6 + Math.random() * 0.8,
+    size: 5 + Math.random() * 6,
+    color: COLORS[Math.floor(Math.random() * COLORS.length)],
+    rot: Math.random() * Math.PI * 2,
+    vr: (Math.random() - 0.5) * 0.2,
+    life: 1,
+  };
+}
+
+function burstConfetti() {
+  if (REDUCED_MOTION) return;
+  for (let i = 0; i < 80; i++) particles.push(makeParticle("confetti"));
+  if (!animating) tick();
+}
+
+let petalsOn = false;
+function startPetals() {
+  if (REDUCED_MOTION || petalsOn) return;
+  petalsOn = true;
+  setInterval(() => {
+    if (particles.length < 60 && !document.hidden) {
+      particles.push(makeParticle("petal"));
+      if (!animating) tick();
+    }
+  }, 700);
+}
+
+function tick() {
+  animating = true;
+  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  particles = particles.filter((p) => p.life > 0 && p.y < window.innerHeight + 30);
+  for (const p of particles) {
+    p.x += p.vx + (p.kind === "petal" ? Math.sin(p.y / 40) * 0.8 : 0);
+    p.y += p.vy;
+    if (p.kind === "confetti") {
+      p.vy += 0.25; // gravity
+      p.life -= 0.008;
+    }
+    p.rot += p.vr;
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot);
+    ctx.globalAlpha = Math.max(p.life, 0);
+    ctx.fillStyle = p.color;
+    if (p.kind === "petal") {
+      ctx.beginPath();
+      ctx.ellipse(0, 0, p.size * 0.7, p.size * 0.45, 0, 0, Math.PI * 2);
+      ctx.fill();
+    } else {
+      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+    }
+    ctx.restore();
+  }
+  if (particles.length > 0) {
+    requestAnimationFrame(tick);
+  } else {
+    animating = false;
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  }
+}
+
+// ---------- RSVP form (Formspree via fetch) ----------
+const form = document.getElementById("rsvpForm");
+const formStatus = document.getElementById("formStatus");
+const submitBtn = document.getElementById("rsvpSubmit");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  submitBtn.disabled = true;
+  formStatus.textContent = "Sending…";
+  formStatus.classList.remove("error");
+  try {
+    const res = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { Accept: "application/json" },
+    });
+    if (res.ok) {
+      form.reset();
+      formStatus.textContent = "Thank you! Your RSVP has been received. 💛";
+      burstConfetti();
+    } else {
+      throw new Error("Form service returned " + res.status);
+    }
+  } catch (err) {
+    formStatus.textContent = "Something went wrong — please try again or text the couple directly.";
+    formStatus.classList.add("error");
+  } finally {
+    submitBtn.disabled = false;
+  }
+});

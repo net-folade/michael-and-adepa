@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ada &amp; Tunde — Wedding Invitation</title>
+  <meta name="description" content="You're invited! Join Ada & Tunde as they celebrate their wedding." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Envelope intro screen -->
+  <div class="envelope-screen" id="envelopeScreen">
+    <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open the invitation">
+      <div class="envelope-back"></div>
+      <div class="envelope-card">
+        <p class="card-mini-names">A &amp; T</p>
+        <p class="card-mini-text">You're invited</p>
+      </div>
+      <div class="envelope-front"></div>
+      <div class="envelope-flap"></div>
+      <div class="envelope-seal">A♥T</div>
+    </div>
+    <p class="envelope-hint">Tap the envelope to open</p>
+  </div>
+
+  <!-- Confetti / petals canvas -->
+  <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+
+  <!-- Main invitation -->
+  <main class="invitation" id="invitation" hidden>
+
+    <header class="hero">
+      <p class="hero-eyebrow">Together with their families</p>
+      <h1 class="hero-names">Ada <span class="amp">&amp;</span> Tunde</h1>
+      <p class="hero-invite">joyfully invite you to celebrate their wedding</p>
+      <p class="hero-date">Saturday, December 12, 2026 · 2:00 PM</p>
+      <p class="hero-venue">The Rose Garden Hall, Lagos</p>
+    </header>
+
+    <!-- Countdown -->
+    <section class="countdown" aria-label="Countdown to the wedding">
+      <h2 class="section-title">Counting down</h2>
+      <div class="countdown-grid" id="countdownGrid">
+        <div class="count-box"><span class="count-num" id="cdDays">--</span><span class="count-label">Days</span></div>
+        <div class="count-box"><span class="count-num" id="cdHours">--</span><span class="count-label">Hours</span></div>
+        <div class="count-box"><span class="count-num" id="cdMins">--</span><span class="count-label">Minutes</span></div>
+        <div class="count-box"><span class="count-num" id="cdSecs">--</span><span class="count-label">Seconds</span></div>
+      </div>
+      <p class="countdown-today" id="countdownToday" hidden>It's today! 🎉</p>
+    </section>
+
+    <!-- Details -->
+    <section class="details">
+      <h2 class="section-title">The details</h2>
+      <div class="details-grid">
+        <div class="detail-card">
+          <h3>Ceremony</h3>
+          <p>2:00 PM</p>
+          <p>The Rose Garden Hall</p>
+          <p>123 Bloom Street, Lagos</p>
+          <a class="map-link" href="https://maps.google.com/?q=The+Rose+Garden+Hall+Lagos" target="_blank" rel="noopener">View on map ↗</a>
+        </div>
+        <div class="detail-card">
+          <h3>Reception</h3>
+          <p>5:00 PM</p>
+          <p>Same venue — garden terrace</p>
+          <p>Dinner, toasts &amp; dancing</p>
+        </div>
+        <div class="detail-card">
+          <h3>Dress code</h3>
+          <p>Semi-formal</p>
+          <p>Colours of the day:</p>
+          <p><span class="swatch swatch-green"></span> Emerald &nbsp; <span class="swatch swatch-cream"></span> Cream</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery-section">
+      <h2 class="section-title">Our story in pictures</h2>
+      <div class="gallery" tabindex="0" aria-label="Photo gallery, scroll sideways">
+        <img src="photos/photo1.svg" alt="Ada and Tunde photo 1" loading="lazy" />
+        <img src="photos/photo2.svg" alt="Ada and Tunde photo 2" loading="lazy" />
+        <img src="photos/photo3.svg" alt="Ada and Tunde photo 3" loading="lazy" />
+        <img src="photos/photo4.svg" alt="Ada and Tunde photo 4" loading="lazy" />
+      </div>
+      <p class="gallery-hint">Swipe to see more →</p>
+    </section>
+
+    <!-- RSVP -->
+    <section class="rsvp">
+      <h2 class="section-title">RSVP</h2>
+      <p class="rsvp-deadline">Kindly respond by November 15, 2026</p>
+      <!-- Replace YOUR_FORM_ID with a real Formspree form ID (formspree.io, free) -->
+      <form id="rsvpForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <label>
+          Your name
+          <input type="text" name="name" required autocomplete="name" placeholder="Full name" />
+        </label>
+        <fieldset>
+          <legend>Will you attend?</legend>
+          <label class="radio"><input type="radio" name="attending" value="Joyfully accepts" required /> Joyfully accept 🎉</label>
+          <label class="radio"><input type="radio" name="attending" value="Regretfully declines" /> Regretfully decline</label>
+        </fieldset>
+        <label>
+          Number of guests (including you)
+          <input type="number" name="guests" min="1" max="5" value="1" required />
+        </label>
+        <label>
+          Dietary notes or a message for the couple
+          <textarea name="message" rows="3" placeholder="Optional"></textarea>
+        </label>
+        <button type="submit" id="rsvpSubmit">Send RSVP</button>
+        <p class="form-status" id="formStatus" role="status"></p>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <p class="footer-names">Ada &amp; Tunde</p>
+      <p>We can't wait to celebrate with you 💛</p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
