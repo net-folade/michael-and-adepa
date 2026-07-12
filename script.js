@@ -169,7 +169,10 @@ if (!REDUCED_MOTION) {
   });
 }
 
-// ---------- RSVP form (Formspree via fetch) ----------
+// ---------- RSVP form (Google Apps Script via fetch) ----------
+// Paste the Apps Script web-app URL (ends in /exec) between the quotes below.
+const RSVP_ENDPOINT = "PASTE_YOUR_APPS_SCRIPT_EXEC_URL_HERE";
+
 const form = document.getElementById("rsvpForm");
 const formStatus = document.getElementById("formStatus");
 const submitBtn = document.getElementById("rsvpSubmit");
@@ -180,18 +183,18 @@ form.addEventListener("submit", async (e) => {
   formStatus.textContent = "Sending…";
   formStatus.classList.remove("error");
   try {
-    const res = await fetch(form.action, {
+    // Apps Script web apps don't send CORS headers, so we post with no-cors.
+    // The response is opaque (unreadable) — we can't confirm success, so we
+    // optimistically thank the guest. URLSearchParams sends form-encoded data,
+    // which Apps Script reads from e.parameter with no preflight request.
+    await fetch(RSVP_ENDPOINT, {
       method: "POST",
-      body: new FormData(form),
-      headers: { Accept: "application/json" },
+      mode: "no-cors",
+      body: new URLSearchParams(new FormData(form)),
     });
-    if (res.ok) {
-      form.reset();
-      formStatus.textContent = "Thank you! Your RSVP has been received. 💛";
-      burstConfetti();
-    } else {
-      throw new Error("Form service returned " + res.status);
-    }
+    form.reset();
+    formStatus.textContent = "Thank you! Your RSVP has been received. 💛";
+    burstConfetti();
   } catch (err) {
     formStatus.textContent = "Something went wrong — please try again or text the couple directly.";
     formStatus.classList.add("error");
