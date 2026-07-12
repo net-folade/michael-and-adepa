@@ -92,12 +92,8 @@
         Or RSVP by phone:<br />
         <a href="tel:+233543553154">054 355 3154</a> · <a href="tel:+233543250414">054 325 0414</a>
       </p>
-      <!-- Submission handled by script.js (posts to Web3Forms). Get a free access key at web3forms.com -->
-      <form id="rsvpForm" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
-        <input type="hidden" name="subject" value="New Wedding RSVP — Michael & Adepa" />
-        <input type="hidden" name="from_name" value="Michael & Adepa Wedding" />
-        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+      <!-- Submission handled by script.js (posts to a Google Apps Script web app) -->
+      <form id="rsvpForm" action="#" method="POST">
         <label>
           Your name
           <input type="text" name="name" required autocomplete="name" placeholder="Full name" />
@@ -128,6 +124,6 @@
 
   </main>
 
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>

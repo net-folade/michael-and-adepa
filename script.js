@@ -169,9 +169,10 @@ if (!REDUCED_MOTION) {
   });
 }
 
-// ---------- RSVP form (Web3Forms via fetch) ----------
-// Web3Forms returns JSON with CORS headers, so we can confirm real success/failure.
-// The access key lives in a hidden field in the form (see index.html).
+// ---------- RSVP form (Google Apps Script via fetch) ----------
+// Paste the Apps Script web-app URL (ends in /exec) between the quotes below.
+const RSVP_ENDPOINT = "PASTE_YOUR_APPS_SCRIPT_EXEC_URL_HERE";
+
 const form = document.getElementById("rsvpForm");
 const formStatus = document.getElementById("formStatus");
 const submitBtn = document.getElementById("rsvpSubmit");
@@ -182,21 +183,20 @@ form.addEventListener("submit", async (e) => {
   formStatus.textContent = "Sending…";
   formStatus.classList.remove("error");
   try {
-    const res = await fetch(form.action, {
+    // Apps Script web apps don't send CORS headers, so we post with no-cors.
+    // The response is opaque (unreadable) — we can't confirm success, so we
+    // optimistically thank the guest. URLSearchParams sends form-encoded data,
+    // which Apps Script reads from e.parameter with no preflight request.
+    await fetch(RSVP_ENDPOINT, {
       method: "POST",
-      body: new FormData(form),
-      headers: { Accept: "application/json" },
+      mode: "no-cors",
+      body: new URLSearchParams(new FormData(form)),
     });
-    const data = await res.json();
-    if (data.success) {
-      form.reset();
-      formStatus.textContent = "Thank you! Your RSVP has been received. 💛";
-      burstConfetti();
-    } else {
-      throw new Error(data.message || "Submission failed");
-    }
+    form.reset();
+    formStatus.textContent = "Thank you! Your RSVP has been received. 💛";
+    burstConfetti();
   } catch (err) {
-    formStatus.textContent = "Something went wrong — please try again or text the couple directly.";
+    formStatus.textContent = "Something went wrong. Please contact the numbers provided in the invitation.";
     formStatus.classList.add("error");
   } finally {
     submitBtn.disabled = false;
