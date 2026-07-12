@@ -2,8 +2,8 @@
 :root {
   --cream: #faf6ee;
   --cream-dark: #f0e8d8;
-  --green: #1e4d3b;
-  --green-light: #2e6b52;
+  --burgundy: #6d1a2e;
+  --burgundy-light: #8f3149;
   --gold: #c9a86a;
   --ink: #2b2b28;
   --serif: "Cormorant Garamond", Georgia, serif;
@@ -43,7 +43,7 @@ body::before {
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  background: linear-gradient(160deg, var(--green) 0%, #14352a 100%);
+  background: linear-gradient(160deg, var(--burgundy) 0%, #4a0f1f 100%);
   transition: opacity 0.8s ease 0.9s, visibility 0.8s ease 0.9s;
 }
 
@@ -111,7 +111,7 @@ body::before {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--green);
+  background: var(--burgundy);
   color: var(--gold);
   font-family: var(--serif);
   font-size: 1.1rem;
@@ -144,7 +144,7 @@ body::before {
 
 .envelope.open .envelope-card { transform: translateY(-70%); }
 
-.card-mini-names { font-family: var(--serif); font-size: 1.6rem; color: var(--green); }
+.card-mini-names { font-family: var(--serif); font-size: 1.6rem; color: var(--burgundy); }
 .card-mini-text { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
 
 .envelope-hint {
@@ -182,7 +182,7 @@ section { margin-top: 4rem; }
   font-family: var(--serif);
   font-weight: 600;
   font-size: 1.9rem;
-  color: var(--green);
+  color: var(--burgundy);
   text-align: center;
   margin-bottom: 1.5rem;
 }
@@ -204,7 +204,7 @@ section { margin-top: 4rem; }
   font-family: var(--serif);
   font-weight: 400;
   font-size: clamp(3rem, 10vw, 4.5rem);
-  color: var(--green);
+  color: var(--burgundy);
   margin: 0.5rem 0;
 }
 
@@ -215,7 +215,7 @@ section { margin-top: 4rem; }
 .hero-date {
   font-family: var(--serif);
   font-size: 1.4rem;
-  color: var(--green-light);
+  color: var(--burgundy-light);
 }
 
 .hero-time { font-weight: 700; }
@@ -237,7 +237,7 @@ section { margin-top: 4rem; }
   border-radius: 10px;
   padding: 1rem 0.25rem;
   text-align: center;
-  box-shadow: 0 3px 12px rgba(30, 77, 59, 0.08);
+  box-shadow: 0 3px 12px rgba(109, 26, 46, 0.08);
 }
 
 .count-num {
@@ -245,7 +245,7 @@ section { margin-top: 4rem; }
   font-family: var(--serif);
   font-size: clamp(1.6rem, 6vw, 2.4rem);
   font-weight: 600;
-  color: var(--green);
+  color: var(--burgundy);
   font-variant-numeric: tabular-nums;
 }
 
@@ -260,7 +260,7 @@ section { margin-top: 4rem; }
   text-align: center;
   font-family: var(--serif);
   font-size: 1.8rem;
-  color: var(--green);
+  color: var(--burgundy);
 }
 
 /* ---------- Details ---------- */
@@ -277,7 +277,7 @@ section { margin-top: 4rem; }
   border-radius: 12px;
   padding: 1.5rem 1rem;
   text-align: center;
-  box-shadow: 0 3px 12px rgba(30, 77, 59, 0.08);
+  box-shadow: 0 3px 12px rgba(109, 26, 46, 0.08);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -298,7 +298,7 @@ section { margin-top: 4rem; }
 .map-link {
   display: inline-block;
   margin-top: 0.6rem;
-  color: var(--green);
+  color: var(--burgundy);
   font-weight: 500;
   white-space: nowrap;
 }
@@ -321,7 +321,7 @@ section { margin-top: 4rem; }
   object-fit: cover;
   border-radius: 12px;
   scroll-snap-align: center;
-  box-shadow: 0 4px 16px rgba(30, 77, 59, 0.15);
+  box-shadow: 0 4px 16px rgba(109, 26, 46, 0.15);
 }
 
 .gallery-hint {
@@ -332,7 +332,7 @@ section { margin-top: 4rem; }
 }
 
 /* ---------- RSVP ---------- */
-.rsvp-deadline { text-align: center; margin-bottom: 0.5rem; color: var(--green-light); }
+.rsvp-deadline { text-align: center; margin-bottom: 0.5rem; color: var(--burgundy-light); }
 
 .rsvp-phones {
   text-align: center;
@@ -340,7 +340,7 @@ section { margin-top: 4rem; }
 }
 
 .rsvp-phones a {
-  color: var(--green);
+  color: var(--burgundy);
   font-weight: 500;
   white-space: nowrap;
 }
@@ -350,7 +350,7 @@ section { margin-top: 4rem; }
   border: 1px solid var(--cream-dark);
   border-radius: 14px;
   padding: 2rem 1.5rem;
-  box-shadow: 0 6px 28px rgba(30, 77, 59, 0.18);
+  box-shadow: 0 6px 28px rgba(109, 26, 46, 0.18);
   display: grid;
   gap: 1.25rem;
   max-width: 480px;
@@ -373,17 +373,17 @@ section { margin-top: 4rem; }
 
 #rsvpForm input:focus,
 #rsvpForm textarea:focus {
-  outline: 2px solid var(--green-light);
+  outline: 2px solid var(--burgundy-light);
   border-color: transparent;
 }
 
 #rsvpForm fieldset { border: none; display: grid; gap: 0.5rem; }
 #rsvpForm legend { font-weight: 500; margin-bottom: 0.5rem; }
 .radio { font-weight: 400 !important; display: flex !important; align-items: center; gap: 0.5rem; }
-.radio input { accent-color: var(--green); width: 18px; height: 18px; }
+.radio input { accent-color: var(--burgundy); width: 18px; height: 18px; }
 
 #rsvpSubmit {
-  background: var(--green);
+  background: var(--burgundy);
   color: var(--cream);
   border: none;
   border-radius: 999px;
@@ -394,24 +394,24 @@ section { margin-top: 4rem; }
   transition: background 0.25s ease, transform 0.15s ease;
 }
 
-#rsvpSubmit:hover { background: var(--green-light); }
+#rsvpSubmit:hover { background: var(--burgundy-light); }
 #rsvpSubmit:active { transform: scale(0.98); }
 #rsvpSubmit:disabled { opacity: 0.6; cursor: wait; }
 
-.form-status { text-align: center; font-weight: 500; color: var(--green); min-height: 1.5em; }
+.form-status { text-align: center; font-weight: 500; color: var(--burgundy); min-height: 1.5em; }
 .form-status.error { color: #a33a2a; }
 
 /* ---------- Footer ---------- */
 .footer {
   margin-top: 4rem;
   text-align: center;
-  color: var(--green-light);
+  color: var(--burgundy-light);
 }
 
 .footer-names {
   font-family: var(--serif);
   font-size: 1.6rem;
-  color: var(--green);
+  color: var(--burgundy);
 }
 
 /* ---------- Fade-up reveal ---------- */
