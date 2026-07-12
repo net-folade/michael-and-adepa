@@ -218,6 +218,8 @@ section { margin-top: 4rem; }
   color: var(--green-light);
 }
 
+.hero-time { font-weight: 700; }
+
 .hero-venue { color: var(--gold); letter-spacing: 0.08em; }
 
 /* ---------- Countdown ---------- */

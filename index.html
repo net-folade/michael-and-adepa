@@ -7,8 +7,8 @@
   <meta name="description" content="You're invited! Join Michael & Adepa as they celebrate their wedding." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=6" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=7" />
 </head>
 <body>
 
@@ -37,7 +37,7 @@
       <p class="hero-eyebrow">Together with their families</p>
       <h1 class="hero-names">Michael <span class="amp">&amp;</span> Adepa</h1>
       <p class="hero-invite">joyfully invite you to their wedding reception</p>
-      <p class="hero-date">Saturday, August 15, 2026 · 2:00 PM</p>
+      <p class="hero-date">Saturday, August 15, 2026 · <span class="hero-time">2:00 PM</span></p>
       <p class="hero-venue">Berma House, Sowutuom</p>
     </header>
 
@@ -103,10 +103,11 @@
           <label class="radio"><input type="radio" name="attending" value="Joyfully accepts" required /> Yes yes yes, I'll be there 🎉</label>
           <label class="radio"><input type="radio" name="attending" value="Regretfully declines" /> Sorry, can't make it 😔</label>
         </fieldset>
-        <label>
-          Number of guests (including you)
-          <input type="number" name="guests" min="1" max="5" value="1" required />
-        </label>
+        <fieldset>
+          <legend>Are you bringing a plus one?</legend>
+          <label class="radio"><input type="radio" name="plus_one" value="Yes" /> Yes</label>
+          <label class="radio"><input type="radio" name="plus_one" value="No" /> No</label>
+        </fieldset>
         <label>
           Dietary notes or a message for the couple
           <textarea name="message" rows="3" placeholder="Optional"></textarea>
