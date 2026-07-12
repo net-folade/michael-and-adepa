@@ -171,7 +171,7 @@ if (!REDUCED_MOTION) {
 
 // ---------- RSVP form (Google Apps Script via fetch) ----------
 // Paste the Apps Script web-app URL (ends in /exec) between the quotes below.
-const RSVP_ENDPOINT = "PASTE_YOUR_APPS_SCRIPT_EXEC_URL_HERE";
+const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxEXqAIvpjHTWJNomPIAvH-PQbpno8B85L_Ja6jbHnzm9Qr_wuOZOheDL_8FgqtzOg6/exec";
 
 const form = document.getElementById("rsvpForm");
 const formStatus = document.getElementById("formStatus");
